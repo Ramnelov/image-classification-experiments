@@ -29,7 +29,7 @@ model = tf.keras.Sequential(
 
 model.compile(
     optimizer=tf.keras.optimizers.SGD(learning_rate=0.1),
-    loss="sparse_categorical_crossentropy",
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
     metrics=["accuracy"],
 )
 

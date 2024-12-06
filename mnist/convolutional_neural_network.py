@@ -1,4 +1,4 @@
-# Logistic Regression for MNIST dataset using TensorFlow and TensorFlow Datasets
+# Convolutional Neural Network for MNIST dataset using TensorFlow and TensorFlow Datasets
 
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -21,14 +21,20 @@ val_data = val_data.map(preprocess).batch(32).prefetch(tf.data.experimental.AUTO
 
 model = tf.keras.Sequential(
     [
-        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Reshape(target_shape=(28, 28, 1), input_shape=(28, 28)),
+        tf.keras.layers.Conv2D(32, (3, 3), activation="relu"),
+        tf.keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(64, (3, 3), activation="relu"),
+        tf.keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(128, activation="relu"),
         tf.keras.layers.Dense(10, activation="softmax"),
     ]
 )
 
 model.compile(
     optimizer=tf.keras.optimizers.SGD(learning_rate=0.1),
-    loss="sparse_categorical_crossentropy",
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
     metrics=["accuracy"],
 )
 
