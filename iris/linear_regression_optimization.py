@@ -8,18 +8,16 @@ import tensorflow_datasets as tfds
 dataset, info = tfds.load("iris", split="train", with_info=True, as_supervised=True)
 dataset_size = info.splits["train"].num_examples
 
-dataset = dataset.shuffle(dataset_size, seed=1234)
-train_size = int(0.8 * dataset_size)
 
-
-def preprocess(features, target):
-    features = tf.cast(features, tf.float32)
-    target = tf.cast(features[2], tf.float32)
+def preprocess(features, _):
+    target = features[2]
     features = tf.concat([features[:2], features[3:]], axis=0)
     return features, target
 
 
 dataset = dataset.shuffle(dataset_size, seed=1234).map(preprocess)
+train_size = int(0.8 * dataset_size)
+
 train_dataset = dataset.take(train_size).batch(train_size)
 val_dataset = dataset.skip(train_size).batch(dataset_size - train_size)
 
