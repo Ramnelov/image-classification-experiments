@@ -1,4 +1,4 @@
-# Closed for linear regression for Iris dataset using TensorFlow and TensorFlow Datasets
+# Closed for linear regression for Iris dataset using scikit-learn, TensorFlow and TensorFlow Datasets
 
 import matplotlib.pyplot as plt
 import numpy as np
