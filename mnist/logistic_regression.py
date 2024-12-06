@@ -1,4 +1,4 @@
-# Two-layered neural network for MNIST dataset using TensorFlow and TensorFlow Datasets
+# Logistic Regression for MNIST dataset using TensorFlow and TensorFlow Datasets
 
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -22,16 +22,23 @@ val_data = val_data.map(preprocess).batch(32).prefetch(tf.data.experimental.AUTO
 model = tf.keras.Sequential(
     [
         tf.keras.layers.Flatten(input_shape=(28, 28)),
-        tf.keras.layers.Dense(128, activation="relu"),
         tf.keras.layers.Dense(10, activation="softmax"),
     ]
 )
 
 model.compile(
-    optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
+    optimizer=tf.keras.optimizers.SGD(learning_rate=0.1),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
 )
 
-history = model.fit(train_data, validation_data=val_data, epochs=10)
+early_stopping = tf.keras.callbacks.EarlyStopping(
+    monitor="val_loss", patience=3, restore_best_weights=True
+)
+
+history = model.fit(
+    train_data, validation_data=val_data, epochs=20, callbacks=[early_stopping]
+)
 
 plt.plot(history.history["loss"], label="Training Loss")
 plt.plot(history.history["val_loss"], label="Validation Loss")
