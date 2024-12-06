@@ -1,0 +1,5 @@
+tensorflow-cpu
+tensorflow_datasets
+numpy
+matplotlib
+PyQt6
