@@ -3,6 +3,3 @@ tensorflow_datasets
 numpy
 matplotlib
 PyQt6
-scikit-learn
-torch
-torchvision
