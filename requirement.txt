@@ -3,3 +3,6 @@ tensorflow_datasets
 numpy
 matplotlib
 PyQt6
+mypy
+isort
+black
