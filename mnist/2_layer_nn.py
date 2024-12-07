@@ -5,6 +5,7 @@ import tensorflow as tf
 from preprocess_data import train_data, val_data
 
 if __name__ == "__main__":
+
     model = tf.keras.Sequential(
         [
             tf.keras.layers.Flatten(input_shape=(28, 28)),

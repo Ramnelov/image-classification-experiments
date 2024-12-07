@@ -6,17 +6,6 @@ from preprocess_data import train_data, val_data
 
 if __name__ == "__main__":
 
-    gpus = tf.config.experimental.list_physical_devices("GPU")
-    if gpus:
-        try:
-            for gpu in gpus:
-                tf.config.experimental.set_memory_growth(gpu, True)
-            print(f"Using GPU: {gpus}")
-        except RuntimeError as e:
-            print(e)
-    else:
-        print("No GPU available, using CPU.")
-
     model = tf.keras.Sequential(
         [
             tf.keras.layers.Reshape(target_shape=(28, 28, 1), input_shape=(28, 28)),
