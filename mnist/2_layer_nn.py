@@ -1,5 +1,3 @@
-# Two-layered neural network for MNIST dataset using TensorFlow and TensorFlow Datasets
-
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from preprocess_data import train_data, val_data
