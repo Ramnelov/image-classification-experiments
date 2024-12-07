@@ -4,3 +4,4 @@ numpy
 matplotlib
 PyQt6
 scikit-learn
+torch
