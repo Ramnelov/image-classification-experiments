@@ -5,3 +5,4 @@ matplotlib
 PyQt6
 scikit-learn
 torch
+torchvision
